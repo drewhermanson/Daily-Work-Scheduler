@@ -1,6 +1,36 @@
+var timeDisplay = $("#currentDay");
+var timeBlock = $()
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+//function that checks the current time and displays it to timeDisplay
+function displayTime() {
+  var currentTime = dayjs().format("dddd, MMMM D, h:mm a");
+  timeDisplay.text(currentTime);
+}
+
+function checkHour() {
+  //variable for specifically the hour
+  var currentHour = dayjs().hour();
+  //a for each loop that checks for anything that has a class of timeblock
+  $(".time-block").each(function() {
+    //for each statement of timeblock it takes the first integer within the id after the "-".
+    var hourId = parseInt($(this).attr("id").split("-")[1]);
+    
+    //loop checks the current hour against the hour id of the time block and assigns time classes
+    if (currentHour > hourId) {
+      $(this).addClass("past");
+    } else if (currentHour === hourId) {
+      $(this).addClass("present");
+    } else {
+      $(this).addClass("future");
+    }
+  });
+}
+
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -21,3 +51,7 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+checkHour();
+displayTime();
+setInterval(displayTime, 1000);
