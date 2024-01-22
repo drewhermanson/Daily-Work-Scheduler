@@ -21,7 +21,7 @@ $(function () {
 
   // Listener for click on saveBtn
   $(".saveBtn").on("click", function() {
-    //saves the description area and id when save is pressed. This allows the listener to target the correct fields.
+    //saves the description area and id when save is pressed. $(this) allows the foreach loop to work on each timeblock's id and description fields
     var text = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
 
@@ -30,7 +30,7 @@ $(function () {
       Text: text,
       Time: time,
     }
-    //sets the object to local storage under the hour
+    //sets the object to local storage under the corresponding hour
     localStorage.setItem(time, JSON.stringify(saveData));
   });
 
