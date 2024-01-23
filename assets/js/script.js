@@ -22,15 +22,17 @@ $(function () {
   // Listener for click on saveBtn
   $(".saveBtn").on("click", function() {
     //saves the description area and id when save is pressed. $(this) allows the foreach loop to work on each timeblock's id and description fields
+    //siblings since description is the same hierarchy as savebtn
+    //parent since id is above savebtn in hierarchy
     var text = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
 
-    //putting the two variables into an object
+    //putting the two variables into an object for local storage purposes
     var saveData = {
       Text: text,
       Time: time,
     }
-    //sets the object to local storage under the corresponding hour
+    //sets the object to local storage under the key value of the coressponding hour
     localStorage.setItem(time, JSON.stringify(saveData));
   });
 
@@ -53,7 +55,7 @@ $(function () {
 
 //function that checks the current time and displays it to timeDisplay
 function displayTime() {
-  //uses the dayjs api to set and format the current time to a variable
+  //uses the dayjs api to set and format the current time to a variable (day of the week, month, numerical date, time, and am/pm)
   var currentTime = dayjs().format("dddd, MMMM D, h:mm a");
   //displays the date to the #currentday id
   timeDisplay.text(currentTime);
