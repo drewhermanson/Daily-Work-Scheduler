@@ -16,4 +16,3 @@ SO THAT I can manage my time effectively
 
 [Project URL](https://drewhermanson.github.io/Daily-Work-Scheduler/)
 
-[Repo](https://drewhermanson.github.io/Daily-Work-Scheduler/)
